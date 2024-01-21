@@ -85,3 +85,5 @@ C:\Users\ACROSS\source\repos\WebAPIRepositoryPattern\WebAPIRepositoryPattern\obj
 C:\Users\ACROSS\source\repos\WebAPIRepositoryPattern\WebAPIRepositoryPattern\obj\Debug\net6.0\WebAPIRepositoryPattern.pdb
 C:\Users\ACROSS\source\repos\WebAPIRepositoryPattern\WebAPIRepositoryPattern\obj\Debug\net6.0\WebAPIRepositoryPattern.genruntimeconfig.cache
 C:\Users\ACROSS\source\repos\WebAPIRepositoryPattern\WebAPIRepositoryPattern\obj\Debug\net6.0\ref\WebAPIRepositoryPattern.dll
+C:\Users\ACROSS\source\repos\WebAPIRepositoryPattern\WebAPIRepositoryPattern\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\ACROSS\source\repos\WebAPIRepositoryPattern\WebAPIRepositoryPattern\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

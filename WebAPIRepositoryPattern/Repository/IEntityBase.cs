@@ -2,6 +2,6 @@
 {
     public interface IEntityBase
     {
-        int EmpId { get; }
+        int Id { get; }
     }
 }

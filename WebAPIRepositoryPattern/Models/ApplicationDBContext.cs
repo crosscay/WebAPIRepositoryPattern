@@ -9,5 +9,6 @@ namespace WebAPIRepositoryPattern.Models
         }
 
         public DbSet<Employee> EmployeeInfos { get; set; }
+        public DbSet<Product> ProductInfos { get; set; }
     }
 }

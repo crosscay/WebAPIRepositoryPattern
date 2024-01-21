@@ -10,13 +10,13 @@ namespace WebAPIRepositoryPattern.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmpId { get; set; }
 
-        [Required]
-        public string? EmpName { get; set; }
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        public string EmpName { get; set; } = string.Empty;
 
-        public string? Designation { get; set; }
+        public string Designation { get; set; } = string.Empty;
 
-        public string? Department { get; set; }
+        public string Department { get; set; } = string.Empty;
 
-        public string? JoinDate { get; set; }
+        public string JoinDate { get; set; } = string.Empty;
     }
 }

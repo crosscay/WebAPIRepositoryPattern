@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using WebAPIRepositoryPattern.Models;
 using WebAPIRepositoryPattern.Paging;
 
@@ -14,13 +13,11 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task CreateEmployee(Employee employee)
         {
-            //throw new NotImplementedException();
             await AddAsync(employee);
         }
 
         public async Task DeleteEmployee(Employee employee, int id)
         {
-            // throw new NotImplementedException();
             await DeleteAsync(employee, id);
         }
 
@@ -29,15 +26,6 @@ namespace WebAPIRepositoryPattern.Repository
             var query = FindbyCondition(e => e.EmpId == id);
 
             Employee? resp = await query.FirstOrDefaultAsync();
-
-            //Employee? resp = await query.Select(u => new Employee
-            //{
-            //    EmpId = u.EmpId,
-            //    EmpName = u.EmpName,
-            //    Designation = u.Designation,
-            //    Department = u.Department,
-            //    JoinDate = u.JoinDate
-            //}).FirstOrDefaultAsync();
 
             if (resp != null)
             {
@@ -53,22 +41,15 @@ namespace WebAPIRepositoryPattern.Repository
             Employee? resultado = query.FirstOrDefault();
 
             return resultado;
-            // Employee? resp = await query.FirstOrDefaultAsync();
-            // if (resp != null)
-            // {
-            //    return resp;
-            // }
         }
 
         public Task<PagedList<Employee>> GetEmployees(PagingParameters pagingParameters)
         {
-            //throw new NotImplementedException();
             return Task.FromResult(PagedList<Employee>.GetPagedList(FindAll().OrderBy(s=> s.EmpId), pagingParameters.PageNumber, pagingParameters.PageSize));
         }
 
         public async Task UpdateEmployee(Employee employee, int id)
         {
-            //throw new NotImplementedException();
             await UpdateAsync(employee, id);
         }
     }

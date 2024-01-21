@@ -9,31 +9,32 @@ namespace WebAPIRepositoryPattern.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class ProductssController : ControllerBase
     {
         private IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
 
-        public EmployeesController(IEmployeeRepository employeeRepository, IMapper mapper)
+        public ProductssController(IEmployeeRepository employeeRepository, IMapper mapper)
         {
             _mapper = mapper;
             _employeeRepository = employeeRepository;
         }
 
+
         //api/Employees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees([FromQuery] PagingParameters pagingParameters) 
+        public async Task<ActionResult<IEnumerable<Employee>>> GetProductss([FromQuery] PagingParameters pagingParameters)
         {
             return await _employeeRepository.GetEmployees(pagingParameters);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Employee>> GetEmployeeById(int id) 
+        public async Task<ActionResult<Employee>> GetProducttById(int id)
         {
             var employee = await _employeeRepository.FindEmployee(id);
 
-            if (employee == null) 
+            if (employee == null)
             {
                 return NotFound();
             }
@@ -42,7 +43,7 @@ namespace WebAPIRepositoryPattern.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Employee>> CreateEmployee([FromBody] EmployeeAddDTO employeeDTO)
+        public async Task<ActionResult<Employee>> CreateProductt([FromBody] EmployeeAddDTO employeeDTO)
         {
             if (employeeDTO == null)
             {
@@ -55,12 +56,12 @@ namespace WebAPIRepositoryPattern.Controllers
             }
             var employee = _mapper.Map<Employee>(employeeDTO);
             await _employeeRepository.CreateEmployee(employee);
-            return Ok(CreatedAtRoute("EmpId", new { id = employee.EmpId}, employee));
+            return Ok(CreatedAtRoute("EmpId", new { id = employee.EmpId }, employee));
         }
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateOwner(int id, [FromBody] Employee employee)
+        public async Task<ActionResult> UpdateProductt(int id, [FromBody] Employee employee)
         {
             if (employee == null)
             {
@@ -83,15 +84,16 @@ namespace WebAPIRepositoryPattern.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteEmployee(int id)
+        public async Task<ActionResult> DeleteProductt(int id)
         {
             var dbemp = await _employeeRepository.FindEmployee(id);
-            if (dbemp.EmpId.Equals(id)) 
+            if (dbemp.EmpId.Equals(id))
             {
                 await _employeeRepository.DeleteEmployee(dbemp, id);
             }
-            
+
             return NoContent();
         }
+
     }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebAPIRepositoryPattern.Models;
 using WebAPIRepositoryPattern.Repository;
@@ -16,6 +17,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // CONFIGURAR Y INICIALIZAR EL DBCONTEXT
 builder.Services.AddDbContext<ApplicationDBContext>(dbContextOption => dbContextOption.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

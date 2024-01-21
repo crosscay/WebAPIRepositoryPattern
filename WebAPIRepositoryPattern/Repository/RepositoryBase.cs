@@ -1,5 +1,4 @@
-﻿// using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Linq.Expressions;
@@ -20,39 +19,31 @@ namespace WebAPIRepositoryPattern.Repository
 
         public IQueryable<T> FindAll()
         {
-            //throw new NotImplementedException();
             return this._RepositoryContext.Set<T>().AsNoTracking();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync() => await _RepositoryContext.Set<T>().ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => await _RepositoryContext.Set<T>().ToListAsync().ConfigureAwait(false);
 
         public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _RepositoryContext.Set<T>();
             query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-            return await query.ToListAsync();
+            return await query.ToListAsync().ConfigureAwait(false);
 
         }
 
         public IQueryable<T> FindbyCondition(Expression<Func<T, bool>> expression)
         {
             return _RepositoryContext.Set<T>().Where(expression).AsNoTracking();
-            // var resp = await _RepositoryContext.Set<T>().Where(expression).ToListAsync();
-            // query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-            // return await query.FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> GetWhereAsync(Expression<Func<T, bool>> expression)
         {
-            // var listado = await _RepositoryContext.Set<T>().Where(expression).ToListAsync();
             var query = _RepositoryContext.Set<T>().AsQueryable();
-            // var query = _RepositoryContext.Employee.AsQueryable();
-            // var queryable = _RepositoryContext.Set<T>().Where(expression).AsNoTracking();
+
             var queryable = query.Where(expression).AsNoTracking();
-            // query = query.Where(p => p.ContactName.Contains("Maria"));
-            // var results = await query.ToListAsync();
+
             var results = await queryable.ToListAsync();
-            // result = results?.FirstOrDefault();
 
             return results;
         }
@@ -66,20 +57,14 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task UpdateAsync(T entity, int id)
         {
-            // throw new NotImplementedException();
-
-            // await this._RepositoryContext.Set<T>().Update(entity);
-            // await this._RepositoryContext.SaveChangesAsync();
             EntityEntry entityEntry = _RepositoryContext.Entry<T>(entity);
             _RepositoryContext.ChangeTracker.Clear();
             entityEntry.State = EntityState.Modified;
             await _RepositoryContext.SaveChangesAsync();
-            //return (entity);
         }
 
         public async Task DeleteAsync(T enty, int id)
         {
-            //throw new NotImplementedException();
             var entity = await _RepositoryContext.Set<T>().FirstOrDefaultAsync(n => n.EmpId == id);
             EntityEntry entityEntry = _RepositoryContext.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
