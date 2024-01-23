@@ -15,10 +15,10 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Instalando .NET 6.0.21'
+  displayName: 'Instalando .NET 6.0.26'
   inputs:
     packageType: 'sdk'
-    version: '6.0.21'
+    version: '6.0.26'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - task: CmdLine@2
