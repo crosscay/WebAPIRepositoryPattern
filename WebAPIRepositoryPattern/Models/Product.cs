@@ -9,7 +9,7 @@ namespace WebAPIRepositoryPattern.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdProduct { get; set; }
+        public int Id { get; set; }
         [StringLength(maximumLength: 100, ErrorMessage = "El campo {0} no debe de tener más de {1} carácteres")]
         public string NameProduct { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

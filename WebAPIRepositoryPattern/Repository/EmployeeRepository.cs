@@ -23,7 +23,7 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task<Employee> GetEmployee(int id)
         {
-            var query = FindbyCondition(e => e.EmpId == id);
+            var query = FindbyCondition(e => e.Id == id);
 
             Employee? resp = await query.FirstOrDefaultAsync();
 
@@ -37,7 +37,7 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task<Employee> FindEmployee(int id)
         {
-            List<Employee> query = await GetWhereAsync(e => e.EmpId == id);
+            List<Employee> query = await GetWhereAsync(e => e.Id == id);
             Employee? resultado = query.FirstOrDefault();
 
             return resultado;
@@ -45,7 +45,7 @@ namespace WebAPIRepositoryPattern.Repository
 
         public Task<PagedList<Employee>> GetEmployees(PagingParameters pagingParameters)
         {
-            return Task.FromResult(PagedList<Employee>.GetPagedList(FindAll().OrderBy(s=> s.EmpId), pagingParameters.PageNumber, pagingParameters.PageSize));
+            return Task.FromResult(PagedList<Employee>.GetPagedList(FindAll().OrderBy(s=> s.Id), pagingParameters.PageNumber, pagingParameters.PageSize));
         }
 
         public async Task UpdateEmployee(Employee employee, int id)

@@ -24,7 +24,7 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task<Product> FindProductt(int id)
         {
-            List<Product> query = await GetWhereAsync(e => e.IdProduct == id);
+            List<Product> query = await GetWhereAsync(e => e.Id == id);
             Product? resultado = query.FirstOrDefault();
 
             return resultado;
@@ -40,7 +40,7 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task<Product> GetProductt(int id)
         {
-            var query = FindbyCondition(e => e.IdProduct == id);
+            var query = FindbyCondition(e => e.Id == id);
 
             Product? resp = await query.FirstOrDefaultAsync();
 

@@ -8,7 +8,7 @@ namespace WebAPIRepositoryPattern.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EmpId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
         public string EmpName { get; set; } = string.Empty;

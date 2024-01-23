@@ -56,7 +56,7 @@ namespace WebAPIRepositoryPattern.Controllers
             }
             var employee = _mapper.Map<Employee>(employeeDTO);
             await _employeeRepository.CreateEmployee(employee);
-            return Ok(CreatedAtRoute("EmpId", new { id = employee.EmpId }, employee));
+            return Ok(CreatedAtRoute("EmpId", new { id = employee.Id }, employee));
         }
 
 
@@ -74,7 +74,7 @@ namespace WebAPIRepositoryPattern.Controllers
             }
 
             var dbemp = await _employeeRepository.FindEmployee(id);
-            if (!dbemp.EmpId.Equals(id))
+            if (!dbemp.Id.Equals(id))
             {
                 return NotFound();
             }
@@ -87,7 +87,7 @@ namespace WebAPIRepositoryPattern.Controllers
         public async Task<ActionResult> DeleteProductt(int id)
         {
             var dbemp = await _employeeRepository.FindEmployee(id);
-            if (dbemp.EmpId.Equals(id))
+            if (dbemp.Id.Equals(id))
             {
                 await _employeeRepository.DeleteEmployee(dbemp, id);
             }

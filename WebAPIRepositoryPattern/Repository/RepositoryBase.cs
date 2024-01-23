@@ -65,7 +65,7 @@ namespace WebAPIRepositoryPattern.Repository
 
         public async Task DeleteAsync(T enty, int id)
         {
-            var entity = await _RepositoryContext.Set<T>().FirstOrDefaultAsync(n => n.EmpId == id);
+            var entity = await _RepositoryContext.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             EntityEntry entityEntry = _RepositoryContext.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
 
